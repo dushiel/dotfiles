@@ -1,17 +1,22 @@
+alias pv='source ~/venv/bin/activate'
+alias py='python3'
 alias gts='git status'
 alias gtc='git commit -m'
 alias gtf='git fetch'
 alias gtp='git push'
 alias gta='git add'
 alias gtch='git checkout'
+alias dif='delta -sn'
 alias bat='batcat'
-alias diff='delta -sn'
+alias dps='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Names}}\t{{.Status}}"'
 alias grebase='git -c rebase.instructionFormat="%s%nexec GIT_COMMITTER_DATE=\"%cD\" git commit --amend --no-edit" rebase -i'
 eval "$(zoxide init bash)"
 
 alias cd='z'
 alias tx='tmux new -As0'
+eval "$(oh-my-posh init bash --config ~/.mytheme.omp.yaml)"
 
+alias recaudio='parec --monitor-stream="$(pacmd list-sink-inputs | awk '"'"'$1 == "index:" {print $2}'"'"')" | opusenc --raw - "$(xdg-user-dir MUSIC)/recording-$(date +%F_%H-%M-%S).opus"'
 
 ssh() {
     if [ -n "$TMUX" ]; then
@@ -128,8 +133,7 @@ export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
 
 shopt -s histappend
 # immediate writing to history
-
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+export PROMPT_COMMAND="history -a; $PROMPT_COMMAND" #history -c; history -r;
 # ignore and delete commands that are duplicates in session
 HISTCONTROL=ignoredups:erasedups
 # ignore certain commands
@@ -149,7 +153,7 @@ alias capf='rcap | awk "{print ((NR-1)%3)+1, \$0}" | fzf -e -m  --height 40% --r
 ### Useful aliases
 alias show='exa -x -F --group-directories-first ' #--icons
 alias ll='exa -ahl --group-directories-first '
-alias ls='exa -F --group-directories-first '
+alias lss='exa -F --group-directories-first '
 # list all attached devices
 alias mount="mount | awk -F' ' '{ printf \"%s\t%s\n\",\$1,\$3; }' | column -t | egrep ^/dev/ | sort"
 alias gh='history|grep'
