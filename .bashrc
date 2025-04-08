@@ -145,7 +145,7 @@ HISTIGNORE="&:ls:[bf]g:exit:pwd:clear"
 # rcap search_term
 alias cap='tee /tmp/capture.out;'
 rcap() {
-	grep --color "$1" /tmp/capture.out
+        grep --color "$1" /tmp/capture.out
 }
 alias capf='rcap | awk "{print ((NR-1)%3)+1, \$0}" | fzf -e -m  --height 40% --reverse'
 
@@ -163,8 +163,8 @@ alias shh='kyrat '
 alias cmpu='docker-compose up -d'
 alias cmpd='docker-compose down'
 dinto() {
-		docker exec -it "$1" /bin/bash
-	}
+                docker exec -it "$1" /bin/bash
+        }
 l() { exa -F --tree -d -L $1 --group-directories-first
 }
 lx() {
@@ -214,17 +214,17 @@ o_func() { find  . -maxdepth 10 -type d  -print 2>&1 | grep -v "Permission denie
 alias cdf='smart_cd $(find ~/* 2>&1 | grep -v "Permission denied" | fzf -m -e --height 40% --reverse )'
 alias cdfa='smart_cd $(find /* -not -path "/mnt/*" 2>&1 | grep -v "Permission denied" | fzf -m -e --height 40% --reverse )'
 c_func() {
-	(find  . -maxdepth 1 -not -name '.*' -type d -print 2>&1 | awk '{print length, $0}' | sort -n | cut -d ' ' -f 2-;
-	find  . -maxdepth 1 -name '.*' -not -name '.' -type d -print 2>&1 | awk '{print length, $0}' | sort -n | cut -d ' ' -f 2-;
-	find  . -mindepth 2 -maxdepth 2 -not -name '.*' -type d -print 2>&1 ! -name '.*' | awk '{print length, $0}' | sort -n | cut -d ' ' -f 2-;
-	find  . -mindepth 2 -maxdepth 2 -name '.*' -not -name '.' -type d -print 2>&1 ! -name '.*' | awk '{print length, $0}' | sort -n | cut -d ' ' -f 2-;
-	find  . -mindepth 3 -maxdepth 3 -not -name '.*' -type d -print 2>&1 ! -name '.*' | awk '{print length, $0}' | sort -n | cut -d ' ' -f 2-;
-	find  . -mindepth 3 -maxdepth 3 -name '.*' -not -name '.' -type d -print 2>&1 ! -name '.*' | awk '{print length, $0}' | sort -n | cut -d ' ' -f 2-;
-	find  . -mindepth 4 -maxdepth 4 -not -name '.*' -type d -print 2>&1 ! -name '.*' | awk '{print length, $0}' | sort -n | cut -d ' ' -f 2-;
-	find  . -mindepth 4 -maxdepth 4 -name '.*' -not -name '.' -type d -print 2>&1 ! -name '.*' | awk '{print length, $0}' | sort -n | cut -d ' ' -f 2-;
-	find  .  -mindepth 4 -maxdepth 10 -type d -print 2>&1 ;
-	find  . -maxdepth 10 -type f -print 2>&1
-	) | grep -v "Permission denied" | fzf -e -m --height 40% --bind='shift-left:abort' --bind='shift-right:accept' --reverse --no-sort --preview 'tree -C {}'
+        (find  . -maxdepth 1 -not -name '.*' -type d -print 2>&1 | awk '{print length, $0}' | sort -n | cut -d ' ' -f 2-;
+        find  . -maxdepth 1 -name '.*' -not -name '.' -type d -print 2>&1 | awk '{print length, $0}' | sort -n | cut -d ' ' -f 2-;
+        find  . -mindepth 2 -maxdepth 2 -not -name '.*' -type d -print 2>&1 ! -name '.*' | awk '{print length, $0}' | sort -n | cut -d ' ' -f 2-;
+        find  . -mindepth 2 -maxdepth 2 -name '.*' -not -name '.' -type d -print 2>&1 ! -name '.*' | awk '{print length, $0}' | sort -n | cut -d ' ' -f 2-;
+        find  . -mindepth 3 -maxdepth 3 -not -name '.*' -type d -print 2>&1 ! -name '.*' | awk '{print length, $0}' | sort -n | cut -d ' ' -f 2-;
+        find  . -mindepth 3 -maxdepth 3 -name '.*' -not -name '.' -type d -print 2>&1 ! -name '.*' | awk '{print length, $0}' | sort -n | cut -d ' ' -f 2-;
+        find  . -mindepth 4 -maxdepth 4 -not -name '.*' -type d -print 2>&1 ! -name '.*' | awk '{print length, $0}' | sort -n | cut -d ' ' -f 2-;
+        find  . -mindepth 4 -maxdepth 4 -name '.*' -not -name '.' -type d -print 2>&1 ! -name '.*' | awk '{print length, $0}' | sort -n | cut -d ' ' -f 2-;
+        find  .  -mindepth 4 -maxdepth 10 -type d -print 2>&1 ;
+        find  . -maxdepth 10 -type f -print 2>&1
+        ) | grep -v "Permission denied" | fzf -e -m --height 40% --bind='shift-left:abort' --bind='shift-right:accept' --reverse --no-sort --preview 'tree -C {}'
 }
 alias c_call='smart_cd ./$(c_func)'
 export FZF_CTRL_R_OPTS="
@@ -264,17 +264,17 @@ history_find(){
 }
 
 optional_open() {
-	if [ -d "$1" ]
-	then
-		cd $1
-	else
-		if  [[ "$1" == *.py || "$1" == *.yml || "$1" == *.sh || "$1" == *.js || "$1" == *.ts || "$1" == *.html || "$1" == *.json || "$1" == *.md || "$1" == *.scss ]]
-		then
-			code -r $1
-		else
-			xdg-open $1
-		fi
-	fi
+        if [ -d "$1" ]
+        then
+                cd $1
+        else
+                if  [[ "$1" == *.py || "$1" == *.yml || "$1" == *.sh || "$1" == *.js || "$1" == *.ts || "$1" == *.html || "$1" == *.json || "$1" == *.md || "$1" == *.scss ]]
+                then
+                        code -r $1
+                else
+                        xdg-open $1
+                fi
+        fi
 }
 
 
@@ -350,12 +350,12 @@ esac
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
+        # We have color support; assume it's compliant with Ecma-48
+        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+        # a case would tend to support setf rather than setaf.)
+        color_prompt=yes
     else
-	color_prompt=
+        color_prompt=
     fi
 fi
 
